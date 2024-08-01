@@ -20,8 +20,11 @@ public class IngressoServiceTests {
     void venderIngresso() {
         // Arrange
         String idShow = "idTest1";
+        String idLote = "idLote";
         Show showExpected = new Show(new Date(), "Test", 213.0, 200.0, false);
+        Lote loteExpected = new Lote(120, 0, 0.2);
         expect(showService.getShow(idShow)).andReturn(showExpected); 
+        expect(loteService.getLote(idLote)).andReturn(loteExpected); 
         replyAll();
 
         // Act
@@ -36,7 +39,20 @@ public class IngressoServiceTests {
     void venderIngresso_ShouldThorwsException_When_idShowIsNull() {
         // Arrange
         String idShow = null;
-        expect(showService.getShow(idShow)).andReturn(null); 
+        String idLote = "idLote";
+        replyAll();
+
+        // Act & Assert
+        verifyAll();
+        assertThrowsException(Exception.class, () -> 
+                              ingressoService.venderIngresso(idShow, idLote, TipoIngresso.NORMAL))
+    }
+
+    @Test
+    void venderIngresso_ShouldThorwsException_When_idLoteIsNull() {
+        // Arrange
+        String idShow = "idTest1";
+        String idLote = null;
         replyAll();
 
         // Act & Assert
