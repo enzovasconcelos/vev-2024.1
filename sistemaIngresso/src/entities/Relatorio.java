@@ -1,4 +1,4 @@
-package Relatorio;
+package entities;
 
 import enums.StatusRelatorio;
 

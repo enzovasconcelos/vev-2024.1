@@ -1,6 +1,5 @@
 package services;
 
-import entities.Show;
 import enums.TipoIngresso;
 
 public interface IngressoService {
